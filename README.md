@@ -1,149 +1,255 @@
-🤖 Mini Cursor AI
 
-An AI-powered coding assistant that automatically plans projects, designs architecture, and generates code.
+# 🤖 Mini Cursor AI
 
-Mini Cursor AI is a multi-agent system that converts a simple user prompt into a complete software project.
-It analyzes requirements, plans architecture, and writes code using a coordinated workflow of AI agents.
+> An AI-powered coding assistant that automatically plans software projects, designs architecture, and generates code.
 
-🚀 Features
+Mini Cursor AI is a **multi-agent system** that converts a natural language prompt into a working project structure.
+It uses specialized agents to **analyze requirements, plan architecture, and implement code automatically**.
 
-🎯 Automated Project Planning
-Converts natural language prompts into structured engineering plans.
+---
 
-🏗️ Architecture Generation
-Breaks projects into ordered implementation tasks with clear dependencies.
+# 🚀 Features
 
-💻 AI Code Generation
-Automatically creates and modifies files to implement the project.
+* **Automated Project Planning**
+  Converts user prompts into structured project plans.
 
-🤖 Multi-Agent Workflow
-Uses specialized agents (Planner → Architect → Coder) for modular reasoning.
+* **Architecture Design**
+  Breaks down projects into detailed implementation tasks.
 
-🛠 Tool-Driven Development
-AI agents interact with the filesystem using tools (read, write, explore).
+* **AI Code Generation**
+  Creates and modifies files automatically.
 
-⚡ High Performance Inference
-Powered by Groq LLM infrastructure for fast responses.
+* **Multi-Agent Workflow**
+  Uses specialized agents for planning, architecture, and coding.
 
-🏛 System Architecture
+* **Tool-Based Development**
+  Agents interact with the filesystem using tools.
 
-Mini Cursor AI follows a three-stage agent pipeline:
+* **Fast LLM Inference**
+  Powered by Groq's high-performance inference engine.
 
-┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
-│   Planner Agent │ ──▶ │ Architect Agent │ ──▶ │   Coder Agent   │
-│                 │     │                 │     │                 │
-│ • Analyze prompt│     │ • Generate task │     │ • Implement     │
-│ • Create plan   │     │   breakdown     │     │   code          │
-│ • Define stack  │     │ • Order tasks   │     │ • Use tools     │
-│ • File layout   │     │ • Define logic  │     │ • Manage files  │
-└─────────────────┘     └─────────────────┘     └─────────────────┘
+---
 
-Each agent performs a specialized responsibility, enabling more reliable reasoning compared to a single LLM agent.
+# 🏗 Architecture
 
-📂 Project Structure
+Mini Cursor AI uses a **three-agent pipeline**:
+
+```
+Planner Agent → Architect Agent → Coder Agent
+```
+
+### Planner Agent
+
+Analyzes the user prompt and generates a structured project plan.
+
+Responsibilities:
+
+* Understand project requirements
+* Suggest technology stack
+* Define features
+* Generate file structure
+
+---
+
+### Architect Agent
+
+Transforms the project plan into implementation tasks.
+
+Responsibilities:
+
+* Break features into tasks
+* Define dependencies between tasks
+* Specify implementation details
+
+---
+
+### Coder Agent
+
+Executes tasks and generates code.
+
+Responsibilities:
+
+* Create project files
+* Write code implementations
+* Modify existing files
+* Use tools to interact with the filesystem
+
+---
+
+# 📁 Project Structure
+
+```
 coder-buddy/
 
-├── main.py
-│   Entry point and CLI interface
+main.py
+pyproject.toml
+.sample_env
+README.md
 
-├── pyproject.toml
-│   Project dependencies
+agent/
+├── graph.py
+├── states.py
+├── prompts.py
+└── tools.py
+```
 
-├── .sample_env
-│   Environment variable template
+### File Descriptions
 
-├── agent/
-│   Core AI agents
-│
-│   ├── graph.py
-│   │   LangGraph workflow definition
-│
-│   ├── states.py
-│   │   Data models and state management
-│
-│   ├── prompts.py
-│   │   System prompts for each agent
-│
-│   └── tools.py
-│       File operation tools used by the coder agent
+**main.py**
+Application entry point and CLI interface.
 
-└── README.md
-⚙️ How It Works
-1️⃣ Planner Agent
+**graph.py**
+Defines the LangGraph workflow connecting the agents.
 
-The Planner analyzes the user request and produces a structured plan including:
+**states.py**
+Contains data models and shared state definitions.
 
-Project name
+**prompts.py**
+Defines system prompts used by the agents.
 
-Project description
+**tools.py**
+Contains tools for file operations used by the coder agent.
 
-Recommended technology stack
+---
 
-Features and requirements
+# 🧠 Technology Stack
 
-File structure with purposes
+* Python 3.11+
+* Groq API
+* LangChain
+* LangGraph
+* Pydantic
+* python-dotenv
 
-2️⃣ Architect Agent
+---
 
-The Architect converts the plan into detailed implementation tasks:
+# ⚙️ Installation
 
-Breaks features into ordered tasks
+### 1. Clone the repository
 
-Defines dependencies between tasks
+```bash
+git clone https://github.com/codetechie-abhay/mini-cursor-ai
+cd mini-cursor-ai
+```
 
-Specifies implementation details:
+### 2. Install dependencies
 
-classes
-
-functions
-
-variables
-
-integration points
-
-3️⃣ Coder Agent
-
-The Coder executes tasks sequentially and writes code.
-
-It uses a LangChain ReAct agent with filesystem tools:
-
-read_file → read existing files
-
-write_file → create/modify files
-
-list_files → explore directories
-
-get_current_directory → workspace navigation
-
-🛠 Installation
-Prerequisites
-
-Python 3.11+
-
-Groq API Key
-
-Setup
-1️⃣ Clone Repository
-git clone <repository-url>
-cd coder-buddy
-2️⃣ Install Dependencies
+```bash
 pip install -e .
-3️⃣ Configure Environment
+```
+
+### 3. Configure environment variables
+
+```bash
 cp .sample_env .env
+```
 
-Add your Groq API key:
+Add your API key:
 
-GROQ_API_KEY=your_api_key_here
-🎮 Usage
+```
+GROQ_API_KEY=your_api_key
+```
 
-Run the program:
+---
 
+# ▶️ Usage
+
+Run the application:
+
+```bash
 python main.py
+```
 
 Example prompts:
 
-Build a colorful modern todo app in HTML, CSS, and JavaScript
+```
+Build a modern todo app using HTML, CSS, and JavaScript
 
-Create a REST API for user management with Python Flask
+Create a REST API for user management using Flask
 
-Develop a data visualization dashboard using React and D3.js
+Develop a React dashboard for data visualization
+```
+
+---
+
+# 🔄 Workflow Example
+
+User Prompt
+
+```
+Build a weather app using React
+```
+
+System Flow
+
+1. Planner → Generates project plan
+2. Architect → Creates task breakdown
+3. Coder → Writes project files and code
+
+Output: A generated project structure with implemented code.
+
+---
+
+# 🛠 Tools Used by the Coder Agent
+
+| Tool                  | Description                    |
+| --------------------- | ------------------------------ |
+| read_file             | Reads file content             |
+| write_file            | Creates or modifies files      |
+| list_files            | Lists files in the directory   |
+| get_current_directory | Returns current workspace path |
+
+---
+
+# 🚦 Error Handling
+
+The system handles:
+
+* KeyboardInterrupt (graceful cancellation)
+* Validation errors
+* Tool execution failures
+* API/network issues
+
+---
+
+# 🔮 Future Improvements
+
+* Support for multiple LLM providers
+* Web-based interface
+* Git integration
+* Code review agent
+* Plugin system for custom tools
+
+---
+
+# 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Open a pull request
+
+---
+
+# 📄 License
+
+This project is licensed under the MIT License.
+
+---
+
+# 🙏 Acknowledgements
+
+* Groq for fast LLM inference
+* LangChain for LLM orchestration
+* LangGraph for agent workflow management
+
+---
+
+✅ This version is **correct according to GitHub README standards**:
+
+* clear structure
+* no unnecessary marketing text
+* clean sections
+* easy to read
+
+---
